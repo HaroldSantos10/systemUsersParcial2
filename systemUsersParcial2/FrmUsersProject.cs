@@ -32,7 +32,64 @@ namespace systemUsersParcial2
 
         private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if (metroComboBox1.SelectedIndex == 0)
+            {
+                //llenar Harold
+                harold clas = new harold();
+
+                clearDataGridView();
+
+                dgvProjects.Columns.Add("idTv", "ID");
+                dgvProjects.Columns.Add("marca", "MARK");
+                dgvProjects.Columns.Add("modelo", "MODEL");
+                dgvProjects.Columns.Add("color", "COLOR");
+                dgvProjects.Columns.Add("size", "SIZE");
+                dgvProjects.Columns.Add("year", "YEAR");
+
+                //llamado al medoto
+
+                MySqlDataReader dataReader = clas.getAllHarold();
+
+                //leer el resultado y mostrarlo en el datagridview
+                while (dataReader.Read())
+                {
+                    dgvProjects.Rows.Add(
+                            dataReader.GetValue(0),
+                            dataReader.GetValue(1),
+                            dataReader.GetValue(2),
+                            dataReader.GetValue(3),
+                            dataReader.GetValue(4),
+                            dataReader.GetValue(5)
+                           );
+                }
+            }
+            else if (metroComboBox1.SelectedIndex == 1)
+            {
+                meylin mey = new meylin();
+
+                clearDataGridView();
+
+                dgvProjects.Columns.Add("figuraid", "ID FIGURA");
+                dgvProjects.Columns.Add("nombre", "NAME");
+                dgvProjects.Columns.Add("angulos", "ANGULO");
+                dgvProjects.Columns.Add("lados", "SIDES");
+
+
+                //llamado al medoto
+
+                MySqlDataReader reader = mey.getAllMeylin();
+
+                //leer el resultado y mostrarlo en el datagridview
+                while (reader.Read())
+                {
+                    dgvProjects.Rows.Add(
+                            reader.GetValue(0),
+                            reader.GetValue(1),
+                            reader.GetValue(2),
+                            reader.GetValue(3)
+                           );
+                }
+            }
 
         }
 
